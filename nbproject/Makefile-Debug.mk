@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/Calibrator.o \
 	${OBJECTDIR}/main.o
 
 
@@ -61,6 +62,11 @@ LDLIBSOPTIONS=-L/opt/opencv/release/lib -lopencv_aruco -lopencv_aruco_pch_dephel
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/camera_calibration_opencv: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/camera_calibration_opencv ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/Calibrator.o: Calibrator.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/opt/opencv/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Calibrator.o Calibrator.cpp
 
 ${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}
